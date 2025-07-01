@@ -1,3 +1,7 @@
+## 2.10.1
+
+* Added support for `capturePreviewFrame()` to get a single JPEG-encoded frame from the camera preview.
+
 ## 2.10.0
 
 * Introduces a new `CameraLensType` enum to provide lens type information about

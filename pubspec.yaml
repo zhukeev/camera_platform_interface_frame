@@ -1,7 +1,7 @@
-name: camera_platform_interface
+name: camera_platform_interface_frame
 description: A common platform interface for the camera plugin.
-repository: https://github.com/flutter/packages/tree/main/packages/camera/camera_platform_interface
-issue_tracker: https://github.com/flutter/flutter/issues?q=is%3Aissue+is%3Aopen+label%3A%22p%3A+camera%22
+repository: https://github.com/zhukeev/camera_platform_interface_frame
+issue_tracker: https://github.com/zhukeev/camera_platform_interface_frame/issues
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
 version: 2.10.0
