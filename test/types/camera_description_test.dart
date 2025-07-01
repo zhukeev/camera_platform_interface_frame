@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:camera_platform_interface/camera_platform_interface.dart';
+import 'package:camera_platform_interface_frame/camera_platform_interface_frame.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -107,16 +107,14 @@ void main() {
       expect(firstDescription == secondDescription, true);
     });
 
-    test('hashCode should match hashCode of all equality-tested properties',
-        () {
+    test('hashCode should match hashCode of all equality-tested properties', () {
       const CameraDescription description = CameraDescription(
         name: 'Test',
         lensDirection: CameraLensDirection.front,
         sensorOrientation: 0,
         lensType: CameraLensType.ultraWide,
       );
-      final int expectedHashCode = Object.hash(
-          description.name, description.lensDirection, description.lensType);
+      final int expectedHashCode = Object.hash(description.name, description.lensDirection, description.lensType);
 
       expect(description.hashCode, expectedHashCode);
     });
