@@ -58,15 +58,8 @@ abstract class CameraPlatform extends PlatformInterface {
   /// Creates an uninitialized camera instance and returns the cameraId.
   ///
   /// Pass MediaSettings() for defaults
-  Future<int> createCameraWithSettings(
-    CameraDescription cameraDescription,
-    MediaSettings mediaSettings,
-  ) {
-    return createCamera(
-      cameraDescription,
-      mediaSettings.resolutionPreset,
-      enableAudio: mediaSettings.enableAudio,
-    );
+  Future<int> createCameraWithSettings(CameraDescription cameraDescription, MediaSettings mediaSettings) {
+    return createCamera(cameraDescription, mediaSettings.resolutionPreset, enableAudio: mediaSettings.enableAudio);
   }
 
   /// Initializes the camera on the device.
@@ -75,10 +68,7 @@ abstract class CameraPlatform extends PlatformInterface {
   /// On Android this defaults to ImageFormat.YUV_420_888 and applies only to the imageStream.
   /// On iOS this defaults to kCVPixelFormatType_32BGRA.
   /// On Web this parameter is currently not supported.
-  Future<void> initializeCamera(
-    int cameraId, {
-    ImageFormatGroup imageFormatGroup = ImageFormatGroup.unknown,
-  }) {
+  Future<void> initializeCamera(int cameraId, {ImageFormatGroup imageFormatGroup = ImageFormatGroup.unknown}) {
     throw UnimplementedError('initializeCamera() is not implemented.');
   }
 
@@ -134,6 +124,14 @@ abstract class CameraPlatform extends PlatformInterface {
   /// Captures a preview frame and returns it as a byte array.
   Future<Uint8List> capturePreviewFrame() {
     throw UnimplementedError('capturePreviewFrame() is not implemented.');
+  }
+
+  Future<void> startListenFrames(void Function(Uint8List image)? frameCallback) async {
+    throw UnimplementedError('startListenFrames() is not implemented.');
+  }
+
+  Future<void> stopListenFrames() {
+    throw UnimplementedError('stopListenFrames() is not implemented.');
   }
 
   /// Prepare the capture session for video recording.
