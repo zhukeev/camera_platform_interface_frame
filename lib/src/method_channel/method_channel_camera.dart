@@ -10,7 +10,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:stream_transform/stream_transform.dart';
 
-import '../../camera_platform_interface.dart';
+import '../../camera_platform_interface_frame.dart';
 import '../utils/utils.dart';
 import 'type_conversion.dart';
 
