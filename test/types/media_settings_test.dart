@@ -4,20 +4,17 @@
 
 // ignore_for_file: always_specify_types
 
-import 'package:camera_platform_interface/camera_platform_interface.dart';
+import 'package:camera_platform_interface_frame/camera_platform_interface_frame.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test(
-      'MediaSettings non-parametrized constructor should have correct initial values',
-      () {
+  test('MediaSettings non-parametrized constructor should have correct initial values', () {
     const MediaSettings settingsWithNoParameters = MediaSettings();
 
     expect(
       settingsWithNoParameters.resolutionPreset,
       isNull,
-      reason:
-          'MediaSettings constructor should have null default resolutionPreset',
+      reason: 'MediaSettings constructor should have null default resolutionPreset',
     );
 
     expect(
@@ -57,8 +54,7 @@ void main() {
     expect(
       settings.resolutionPreset,
       ResolutionPreset.low,
-      reason:
-          'MediaSettings constructor should hold resolutionPreset parameter',
+      reason: 'MediaSettings constructor should hold resolutionPreset parameter',
     );
 
     expect(
@@ -98,8 +94,7 @@ void main() {
     expect(
       settings.hashCode,
       Object.hash(ResolutionPreset.low, 20, 128000, 32000, true),
-      reason:
-          'MediaSettings hash() should be equal to Object.hash of parameters',
+      reason: 'MediaSettings hash() should be equal to Object.hash of parameters',
     );
   });
 
@@ -206,8 +201,7 @@ void main() {
       expect(
         settings1 == settingsIdentical,
         isTrue,
-        reason:
-            'MediaSettings == operator should return true for identical objects',
+        reason: 'MediaSettings == operator should return true for identical objects',
       );
     });
 
@@ -215,8 +209,7 @@ void main() {
       expect(
         settings1 == Object(),
         isFalse,
-        reason:
-            'MediaSettings == operator should return false for objects of different types',
+        reason: 'MediaSettings == operator should return false for objects of different types',
       );
     });
   });

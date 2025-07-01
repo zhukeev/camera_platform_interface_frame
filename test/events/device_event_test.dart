@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:camera_platform_interface/camera_platform_interface.dart';
+import 'package:camera_platform_interface_frame/camera_platform_interface_frame.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -11,15 +11,13 @@ void main() {
 
   group('DeviceOrientationChangedEvent tests', () {
     test('Constructor should initialize all properties', () {
-      const DeviceOrientationChangedEvent event =
-          DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
+      const DeviceOrientationChangedEvent event = DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
 
       expect(event.orientation, DeviceOrientation.portraitUp);
     });
 
     test('fromJson should initialize all properties', () {
-      final DeviceOrientationChangedEvent event =
-          DeviceOrientationChangedEvent.fromJson(const <String, dynamic>{
+      final DeviceOrientationChangedEvent event = DeviceOrientationChangedEvent.fromJson(const <String, dynamic>{
         'orientation': 'portraitUp',
       });
 
@@ -27,8 +25,7 @@ void main() {
     });
 
     test('toJson should return a map with all fields', () {
-      const DeviceOrientationChangedEvent event =
-          DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
+      const DeviceOrientationChangedEvent event = DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
 
       final Map<String, dynamic> jsonMap = event.toJson();
 
@@ -37,26 +34,21 @@ void main() {
     });
 
     test('equals should return true if objects are the same', () {
-      const DeviceOrientationChangedEvent firstEvent =
-          DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
-      const DeviceOrientationChangedEvent secondEvent =
-          DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
+      const DeviceOrientationChangedEvent firstEvent = DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
+      const DeviceOrientationChangedEvent secondEvent = DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
 
       expect(firstEvent == secondEvent, true);
     });
 
     test('equals should return false if orientation is different', () {
-      const DeviceOrientationChangedEvent firstEvent =
-          DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
-      const DeviceOrientationChangedEvent secondEvent =
-          DeviceOrientationChangedEvent(DeviceOrientation.landscapeLeft);
+      const DeviceOrientationChangedEvent firstEvent = DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
+      const DeviceOrientationChangedEvent secondEvent = DeviceOrientationChangedEvent(DeviceOrientation.landscapeLeft);
 
       expect(firstEvent == secondEvent, false);
     });
 
     test('hashCode should match hashCode of all properties', () {
-      const DeviceOrientationChangedEvent event =
-          DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
+      const DeviceOrientationChangedEvent event = DeviceOrientationChangedEvent(DeviceOrientation.portraitUp);
       final int expectedHashCode = event.orientation.hashCode;
 
       expect(event.hashCode, expectedHashCode);

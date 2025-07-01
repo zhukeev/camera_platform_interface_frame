@@ -2,15 +2,14 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:camera_platform_interface/camera_platform_interface.dart';
-import 'package:camera_platform_interface/src/method_channel/type_conversion.dart';
+import 'package:camera_platform_interface_frame/src/method_channel/type_conversion.dart';
+import 'package:camera_platform_interface_frame/camera_platform_interface_frame.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('CameraImageData can be created', () {
-    final CameraImageData cameraImage =
-        cameraImageFromPlatformData(<dynamic, dynamic>{
+    final CameraImageData cameraImage = cameraImageFromPlatformData(<dynamic, dynamic>{
       'format': 35,
       'height': 1,
       'width': 4,
@@ -36,8 +35,7 @@ void main() {
   test('CameraImageData has ImageFormatGroup.yuv420 for iOS', () {
     debugDefaultTargetPlatformOverride = TargetPlatform.iOS;
 
-    final CameraImageData cameraImage =
-        cameraImageFromPlatformData(<dynamic, dynamic>{
+    final CameraImageData cameraImage = cameraImageFromPlatformData(<dynamic, dynamic>{
       'format': 875704438,
       'height': 1,
       'width': 4,
@@ -60,8 +58,7 @@ void main() {
   test('CameraImageData has ImageFormatGroup.yuv420 for Android', () {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
 
-    final CameraImageData cameraImage =
-        cameraImageFromPlatformData(<dynamic, dynamic>{
+    final CameraImageData cameraImage = cameraImageFromPlatformData(<dynamic, dynamic>{
       'format': 35,
       'height': 1,
       'width': 4,
