@@ -122,13 +122,12 @@ abstract class CameraPlatform extends PlatformInterface {
   }
 
   /// Captures a preview frame and returns it as a byte array.
-  Future<Uint8List> capturePreviewFrame({FrameOutputFormat format = FrameOutputFormat.rgba}) {
+  Future<CameraImageData> capturePreviewFrame() {
     throw UnimplementedError('capturePreviewFrame() is not implemented.');
   }
 
   Future<void> startListenFrames({
-    FrameOutputFormat format = FrameOutputFormat.rgba,
-    void Function(Uint8List image)? frameCallback,
+    void Function(CameraImageData image)? frameCallback,
   }) async {
     throw UnimplementedError('startListenFrames() is not implemented.');
   }

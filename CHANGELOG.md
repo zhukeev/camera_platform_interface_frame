@@ -1,3 +1,7 @@
+## 2.10.4
+
+- Added support `CameraImageData` for `capturePreviewFrame()` and `startListenFrames`
+
 ## 2.10.3
 
 - Added support `FrameOutputFormat` for `capturePreviewFrame()` and `startListenFrames`
