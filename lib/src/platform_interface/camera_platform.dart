@@ -5,6 +5,7 @@
 import 'dart:async';
 import 'dart:math';
 
+import 'package:camera_platform_interface_frame/src/types/frame_output_format.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -122,11 +123,14 @@ abstract class CameraPlatform extends PlatformInterface {
   }
 
   /// Captures a preview frame and returns it as a byte array.
-  Future<Uint8List> capturePreviewFrame() {
+  Future<Uint8List> capturePreviewFrame({FrameOutputFormat format = FrameOutputFormat.rgba}) {
     throw UnimplementedError('capturePreviewFrame() is not implemented.');
   }
 
-  Future<void> startListenFrames(void Function(Uint8List image)? frameCallback) async {
+  Future<void> startListenFrames({
+    FrameOutputFormat format = FrameOutputFormat.rgba,
+    void Function(Uint8List image)? frameCallback,
+  }) async {
     throw UnimplementedError('startListenFrames() is not implemented.');
   }
 
