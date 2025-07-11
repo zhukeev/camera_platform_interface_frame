@@ -126,6 +126,11 @@ abstract class CameraPlatform extends PlatformInterface {
     throw UnimplementedError('capturePreviewFrame() is not implemented.');
   }
 
+  /// Captures a preview frame and returns it as a jpeg file.
+  Future<XFile> capturePreviewFrameJpeg(String outputPath) {
+    throw UnimplementedError('capturePreviewFrameJpeg() is not implemented.');
+  }
+
   Future<void> startListenFrames({
     void Function(CameraImageData image)? frameCallback,
   }) async {

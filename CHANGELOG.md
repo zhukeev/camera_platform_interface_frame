@@ -1,3 +1,7 @@
+## 2.10.5
+
+- Added support `Jpeg` for `capturePreviewFrameJpeg()`
+
 ## 2.10.4
 
 - Added support `CameraImageData` for `capturePreviewFrame()` and `startListenFrames`
