@@ -1,3 +1,7 @@
+## 2.10.6
+
+- Added `saveAsJpeg()`
+
 ## 2.10.5
 
 - Added support `Jpeg` for `capturePreviewFrameJpeg()`
