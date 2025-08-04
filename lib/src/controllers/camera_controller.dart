@@ -285,6 +285,10 @@ class CameraController extends ValueNotifier<CameraValue> {
     return CameraPlatform.instance.capturePreviewFrame();
   }
 
+  Future<XFile> capturePreviewFrameJpeg(String outputPath) async {
+    return CameraPlatform.instance.capturePreviewFrameJpeg(outputPath);
+  }
+
   Future<XFile> saveAsJpeg(CameraImageData imageData, String outputPath, int rotation, int quality) async {
     return CameraPlatform.instance.saveAsJpeg(imageData, outputPath, rotation, quality);
   }
@@ -434,6 +438,11 @@ class CameraController extends ValueNotifier<CameraValue> {
       await _initCalled;
       await CameraPlatform.instance.dispose(_cameraId);
     }
+  }
+
+  /// Sets the output format for taking pictures.
+  Future<void> setImageFileFormat(ImageFileFormat format) async {
+    await CameraPlatform.instance.setImageFileFormat(_cameraId, format);
   }
 
   @override
