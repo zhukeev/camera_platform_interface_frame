@@ -285,8 +285,8 @@ class CameraController extends ValueNotifier<CameraValue> {
     return CameraPlatform.instance.capturePreviewFrame();
   }
 
-  Future<XFile> saveAsJpeg(CameraImageData imageData, String outputPath, int rotation) async {
-    return CameraPlatform.instance.saveAsJpeg(imageData, outputPath, rotation);
+  Future<XFile> saveAsJpeg(CameraImageData imageData, String outputPath, int rotation, int quality) async {
+    return CameraPlatform.instance.saveAsJpeg(imageData, outputPath, rotation, quality);
   }
 
   Future<void> startFrameStream(void Function(CameraImageData image) onAvailable) {

@@ -1,3 +1,7 @@
+## 2.10.7
+
+- Added `quality` parameter to `saveAsJpeg()`
+
 ## 2.10.6
 
 - Added `saveAsJpeg()`

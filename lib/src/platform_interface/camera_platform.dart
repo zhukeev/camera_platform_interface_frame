@@ -132,7 +132,7 @@ abstract class CameraPlatform extends PlatformInterface {
   }
 
   /// Saves an image as a jpeg file.
- Future<XFile> saveAsJpeg(CameraImageData imageData, String outputPath, int rotation) async {
+ Future<XFile> saveAsJpeg(CameraImageData imageData, String outputPath, int rotation, int quality) async {
     throw UnimplementedError('saveAsJpeg() is not implemented.');
   }
 
