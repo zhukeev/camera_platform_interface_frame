@@ -1,3 +1,7 @@
+## 2.10.8
+
+- Added `quality`, `rotation` parameter to `capturePreviewFrameJpeg()`
+
 ## 2.10.7
 
 - Added `quality` parameter to `saveAsJpeg()`
