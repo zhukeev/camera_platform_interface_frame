@@ -1,3 +1,7 @@
+## 2.10.9
+
+- Added `quality`, `rotation` parameter to `capturePreviewFrameJpeg()` in `CameraController`
+
 ## 2.10.8
 
 - Added `quality`, `rotation` parameter to `capturePreviewFrameJpeg()`
