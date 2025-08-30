@@ -1,4 +1,4 @@
-# camera_platform_interface
+# camera_platform_interface_frame
 
 A common platform interface for the [`camera`][1] plugin.
 
