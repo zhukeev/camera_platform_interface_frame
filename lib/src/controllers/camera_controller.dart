@@ -236,6 +236,7 @@ class CameraController extends ValueNotifier<CameraValue> {
   ///
   /// Following parameters (if present) will overwrite [resolutionPreset] settings:
   /// - [fps] controls rate at which frames should be captured by the camera in frames per second.
+  /// - [frameFps] controls rate at which frames should be captured by the camera in frames per second.
   /// - [videoBitrate] controls the video encoding bit rate for recording.
   /// - [audioBitrate] controls the audio encoding bit rate for recording.
 
@@ -244,6 +245,7 @@ class CameraController extends ValueNotifier<CameraValue> {
     ResolutionPreset resolutionPreset, {
     bool enableAudio = true,
     int? fps,
+    int? frameFps,
     int? videoBitrate,
     int? audioBitrate,
     this.imageFormatGroup,
@@ -251,6 +253,7 @@ class CameraController extends ValueNotifier<CameraValue> {
           resolutionPreset: resolutionPreset,
           enableAudio: enableAudio,
           fps: fps,
+          frameFps: frameFps,
           videoBitrate: videoBitrate,
           audioBitrate: audioBitrate,
         ),

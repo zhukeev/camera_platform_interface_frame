@@ -1,3 +1,7 @@
+## 2.10.11
+
+- `frameFps` support
+
 ## 2.10.10
 
 - `CameraController` update

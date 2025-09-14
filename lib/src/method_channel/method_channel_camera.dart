@@ -108,6 +108,7 @@ class MethodChannelCamera extends CameraPlatform {
             ? _serializeResolutionPreset(mediaSettings.resolutionPreset!)
             : null,
         'fps': mediaSettings.fps,
+        'frameFps': mediaSettings.frameFps,
         'videoBitrate': mediaSettings.videoBitrate,
         'audioBitrate': mediaSettings.audioBitrate,
         'enableAudio': mediaSettings.enableAudio,

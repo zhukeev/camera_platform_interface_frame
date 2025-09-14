@@ -16,10 +16,13 @@ class MediaSettings {
   const MediaSettings({
     this.resolutionPreset,
     this.fps,
+    this.frameFps,
     this.videoBitrate,
     this.audioBitrate,
     this.enableAudio = false,
   })  : assert(fps == null || fps > 0, 'fps must be null or greater than zero'),
+        assert(frameFps == null || frameFps > 0,
+            'frameFps must be null or greater than zero'),
         assert(videoBitrate == null || videoBitrate > 0,
             'videoBitrate must be null or greater than zero'),
         assert(audioBitrate == null || audioBitrate > 0,
@@ -30,6 +33,9 @@ class MediaSettings {
 
   /// Rate at which frames should be captured by the camera in frames per second.
   final int? fps;
+
+  /// Rate at which frames should be captured by the camera in frames per second.
+  final int? frameFps;
 
   /// The video encoding bit rate for recording.
   final int? videoBitrate;
@@ -51,6 +57,7 @@ class MediaSettings {
     return other is MediaSettings &&
         resolutionPreset == other.resolutionPreset &&
         fps == other.fps &&
+        frameFps == other.frameFps &&
         videoBitrate == other.videoBitrate &&
         audioBitrate == other.audioBitrate &&
         enableAudio == other.enableAudio;
@@ -59,6 +66,7 @@ class MediaSettings {
   @override
   int get hashCode => Object.hash(
         resolutionPreset,
+        frameFps,
         fps,
         videoBitrate,
         audioBitrate,
@@ -70,6 +78,7 @@ class MediaSettings {
     return 'MediaSettings{'
         'resolutionPreset: $resolutionPreset, '
         'fps: $fps, '
+        'frameFps: $frameFps, '
         'videoBitrate: $videoBitrate, '
         'audioBitrate: $audioBitrate, '
         'enableAudio: $enableAudio}';
