@@ -56,6 +56,9 @@ class MethodChannelCamera extends CameraPlatform {
   // The stream for vending frames to platform interface clients.
   StreamController<CameraImageData>? _frameStreamController;
 
+  // [startListenFrames] stream
+  StreamController<CameraImageData>? _framesStreamController;
+
   Stream<CameraEvent> _cameraEvents(int cameraId) =>
       cameraEventStreamController.stream
           .where((CameraEvent event) => event.cameraId == cameraId);
@@ -250,6 +253,12 @@ class MethodChannelCamera extends CameraPlatform {
   }
 
   @override
+  Stream<CameraImageData> onStreamedFramesAvailable() {
+    _installFramesStreamController(onListen: _onFramesStreamListen);
+    return _framesStreamController!.stream;
+  }
+
+  @override
   Future<void> prepareForVideoRecording() =>
       _channel.invokeMethod<void>('prepareForVideoRecording');
 
@@ -325,6 +334,21 @@ class MethodChannelCamera extends CameraPlatform {
     return _frameStreamController!;
   }
 
+  StreamController<CameraImageData> _installFramesStreamController(
+      {void Function()? onListen}) {
+    _framesStreamController = StreamController<CameraImageData>(
+      onListen: onListen ?? () {},
+      onPause: _onFramesStreamPauseResume,
+      onResume: _onFramesStreamPauseResume,
+      onCancel: _onFramesStreamCancel,
+    );
+    return _framesStreamController!;
+  }
+
+  void _onFramesStreamListen() {
+    _startFramesStream();
+  }
+
   void _onFrameStreamListen() {
     _startPlatformStream();
   }
@@ -332,6 +356,28 @@ class MethodChannelCamera extends CameraPlatform {
   Future<void> _startPlatformStream() async {
     await _channel.invokeMethod<void>('startImageStream');
     _startStreamListener();
+  }
+
+  Future<void> _startFramesStream() async {
+    await _channel.invokeMethod<void>('startListenFrames');
+    _startFrameListener();
+  }
+
+  void _startFrameListener() {
+    const EventChannel cameraEventChannel =
+        EventChannel('plugins.flutter.io/camera/framesStream');
+    _platformImageStreamSubscription =
+        cameraEventChannel.receiveBroadcastStream().listen((dynamic imageData) {
+      if (defaultTargetPlatform == TargetPlatform.iOS) {
+        try {
+          _channel.invokeMethod<void>('receivedFrameStreamData');
+        } on PlatformException catch (e) {
+          throw CameraException(e.code, e.message);
+        }
+      }
+      _frameStreamController!
+          .add(cameraImageFromPlatformData(imageData as Map<dynamic, dynamic>));
+    });
   }
 
   void _startStreamListener() {
@@ -356,6 +402,18 @@ class MethodChannelCamera extends CameraPlatform {
     await _platformImageStreamSubscription?.cancel();
     _platformImageStreamSubscription = null;
     _frameStreamController = null;
+  }
+
+  FutureOr<void> _onFramesStreamCancel() async {
+    await _channel.invokeMethod<void>('stopListenFrames');
+    await _platformImageStreamSubscription?.cancel();
+    _platformImageStreamSubscription = null;
+    _framesStreamController = null;
+  }
+
+  void _onFramesStreamPauseResume() {
+    throw CameraException('InvalidCall',
+        'Pause and resume are not supported for onStreamedFramesAvailable');
   }
 
   void _onFrameStreamPauseResume() {

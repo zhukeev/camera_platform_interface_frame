@@ -1,3 +1,7 @@
+## 2.10.12
+
+- Add new `onStreamedFramesAvailable` method
+
 ## 2.10.11
 
 - `frameFps` support

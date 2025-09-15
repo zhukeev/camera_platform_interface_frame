@@ -40,6 +40,7 @@ class CameraValue {
     required this.isRecordingVideo,
     required this.isTakingPicture,
     required this.isStreamingImages,
+    required this.isStreamingFrames,
     required bool isRecordingPaused,
     required this.flashMode,
     required this.exposureMode,
@@ -61,6 +62,7 @@ class CameraValue {
           isRecordingVideo: false,
           isTakingPicture: false,
           isStreamingImages: false,
+          isStreamingFrames: false,
           isRecordingPaused: false,
           flashMode: FlashMode.auto,
           exposureMode: ExposureMode.auto,
@@ -83,6 +85,9 @@ class CameraValue {
 
   /// True when images from the camera are being streamed.
   final bool isStreamingImages;
+
+  /// True when frames from the camera are being streamed.
+  final bool isStreamingFrames;
 
   final bool _isRecordingPaused;
 
@@ -155,6 +160,7 @@ class CameraValue {
     bool? isRecordingVideo,
     bool? isTakingPicture,
     bool? isStreamingImages,
+    bool? isStreamingFrames,
     String? errorDescription,
     Size? previewSize,
     bool? isRecordingPaused,
@@ -177,6 +183,7 @@ class CameraValue {
       isRecordingVideo: isRecordingVideo ?? this.isRecordingVideo,
       isTakingPicture: isTakingPicture ?? this.isTakingPicture,
       isStreamingImages: isStreamingImages ?? this.isStreamingImages,
+      isStreamingFrames: isStreamingFrames ?? this.isStreamingFrames,
       isRecordingPaused: isRecordingPaused ?? _isRecordingPaused,
       flashMode: flashMode ?? this.flashMode,
       exposureMode: exposureMode ?? this.exposureMode,
@@ -294,6 +301,7 @@ class CameraController extends ValueNotifier<CameraValue> {
 
   bool _isDisposed = false;
   StreamSubscription<CameraImageData>? _imageStreamSubscription;
+  StreamSubscription<CameraImageData>? _framesStreamSubscription;
 
   // A Future awaiting an attempt to initialize (e.g. after `initialize` was
   // just called). If the controller has not been initialized at least once,
@@ -492,13 +500,27 @@ class CameraController extends ValueNotifier<CameraValue> {
   }
 
   Future<void> startFrameStream(
-      void Function(CameraImageData image) onAvailable) {
-    return CameraPlatform.instance
-        .startListenFrames(frameCallback: onAvailable);
+      void Function(CameraImageData image) onAvailable) async {
+    assert(supportsImageStreaming());
+    _throwIfNotInitialized('startFrameStream');
+    try {
+      _framesStreamSubscription = CameraPlatform.instance
+          .onStreamedFramesAvailable()
+          .listen(onAvailable);
+      value = value.copyWith(isStreamingImages: true);
+    } on PlatformException catch (e) {
+      throw CameraException(e.code, e.message);
+    }
   }
 
-  Future<void> stopFrameStream() {
-    return CameraPlatform.instance.stopListenFrames();
+  Future<void> stopFrameStream() async {
+    assert(supportsImageStreaming());
+    _throwIfNotInitialized('stopFrameStream');
+    //  CameraPlatform.instance.stopListenFrames();
+
+    value = value.copyWith(isStreamingImages: false);
+    await _framesStreamSubscription?.cancel();
+    _framesStreamSubscription = null;
   }
 
   /// Start streaming images from platform camera.

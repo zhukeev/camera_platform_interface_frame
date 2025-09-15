@@ -4,7 +4,7 @@ repository: https://github.com/zhukeev/camera_platform_interface_frame
 issue_tracker: https://github.com/zhukeev/camera_platform_interface_frame/issues
 # NOTE: We strongly prefer non-breaking changes, even at the expense of a
 # less-clean API. See https://flutter.dev/go/platform-interface-breaking-changes
-version: 2.10.11
+version: 2.10.12
 
 environment:
   sdk: ^3.4.0

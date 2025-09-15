@@ -131,7 +131,7 @@ abstract class CameraPlatform extends PlatformInterface {
     throw UnimplementedError('capturePreviewFrame() is not implemented.');
   }
 
-  /// Captures a preview frame and returns it as a jpeg file. 
+  /// Captures a preview frame and returns it as a jpeg file.
   /// The [outputPath] is the path where the jpeg file will be saved.
   /// The [rotation] is the rotation in degrees to apply to the image.
   /// The [quality] is the quality of the jpeg image, from 0 to 100.
@@ -212,6 +212,16 @@ abstract class CameraPlatform extends PlatformInterface {
   Stream<CameraImageData> onStreamedFrameAvailable(int cameraId,
       {CameraImageStreamOptions? options}) {
     throw UnimplementedError('onStreamedFrameAvailable() is not implemented.');
+  }
+
+  /// A new streamed frame is available.
+  ///
+  /// Listening to this stream will start streaming, and canceling will stop.
+  /// Pausing will throw a [CameraException], as pausing the stream would cause
+  /// very high memory usage; to temporarily stop receiving frames, cancel, then
+  /// listen again later.
+  Stream<CameraImageData> onStreamedFramesAvailable() {
+    throw UnimplementedError('onStreamedFramesAvailable() is not implemented.');
   }
 
   /// Sets the flash mode for the selected camera.
